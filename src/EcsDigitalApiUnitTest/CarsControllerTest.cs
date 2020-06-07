@@ -8,10 +8,17 @@ namespace EcsDigitalApiUnitTest
 {
     public class CarsControllerTest
     {
+        // When: a "get" call to /api/cars,
+        // Then: return a response containing all cars from DB.
         [Fact]
-        public void Test1()
+        public async Task Get_NoCondition_Calls_CarsService_GetAll()
         {
+            var mockCarService = new Mock<ICarService>();
+            var carController = new CarController(mockCarService.Object);
 
+            await carController.Get().ConfigureAwait(false);
+
+            mockCarService.Verify(x=> x.GetAll());
         }
     }
 }
