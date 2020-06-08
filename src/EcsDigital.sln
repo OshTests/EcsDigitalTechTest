@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcsDigitalApi", "EcsDigitalApi\EcsDigitalApi.csproj", "{0D27BFDC-F031-4D6D-B595-91933A687994}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcsDigitalApi", "EcsDigitalApi\EcsDigitalApi.csproj", "{0D27BFDC-F031-4D6D-B595-91933A687994}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcsDigitalApiUnitTest", "EcsDigitalApiUnitTest\EcsDigitalApiUnitTest.csproj", "{DED810E0-30C6-419B-9A29-9A5E00C0A77F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EcsDigitalApiTest", "EcsDigitalApiUnitTest\EcsDigitalApiTest.csproj", "{DED810E0-30C6-419B-9A29-9A5E00C0A77F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

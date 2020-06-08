@@ -7,9 +7,9 @@ namespace EcsDigitalApi.Services
     public interface ICarService
     {
         Task<IEnumerable<Car>> GetAll();
-        Task<Car> Get(int id);
-        Task Create(Car car);
-        Task Update(Car car);
-        Task Delete(int id);
+        Task<Car> Get(int carId);
+        Task<bool> Add(Car car);
+        Task<bool> Update(Car car);
+        Task<bool> Remove(int carId);
     }
 }

@@ -65,7 +65,7 @@ namespace EcsDigitalApi.Controllers
             if (car.Id != 0)
                 return await Put(car.Id, car);
 
-            var createTask = _carService.Create(car);
+            var createTask = _carService.Add(car);
             await createTask;
 
             return createTask.IsCompletedSuccessfully ? Ok() : StatusCode((int)HttpStatusCode.InternalServerError);
@@ -102,7 +102,7 @@ namespace EcsDigitalApi.Controllers
             if (await _carService.Get(id) == null)
                 return NotFound();
 
-            var deletedTask = _carService.Delete(id);
+            var deletedTask = _carService.Remove(id);
             await deletedTask;
 
             return deletedTask.IsCompletedSuccessfully ? Ok() : StatusCode((int) HttpStatusCode.InternalServerError);

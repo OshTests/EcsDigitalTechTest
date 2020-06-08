@@ -1,34 +1,58 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using EcsDigitalApi.ApiModels;
+using EcsDigitalApi.Repositories;
 
 namespace EcsDigitalApi.Services
 {
     public class CarService : ICarService
     {
+        private readonly IMapper _mapper;
+        private readonly ICarRepository _carRepository;
+
+        public CarService(IMapper mapper, ICarRepository carRepository)
+        {
+            _mapper = mapper;
+            _carRepository = carRepository;
+        }
+
         public async Task<IEnumerable<Car>> GetAll()
         {
-            throw new System.NotImplementedException();
+            var cars = await _carRepository.GetAll();
+
+            var mappedCars = cars.Select(car => _mapper.Map<ApiModels.Car>(car));
+
+            return mappedCars;
         }
 
-        public async Task<Car> Get(int id)
+        public async Task<Car> Get(int carId)
         {
-            throw new System.NotImplementedException();
+            var car = await _carRepository.GetBiId(carId);
+
+            var mappedCars = _mapper.Map<Car>(car);
+
+            return mappedCars;
         }
 
-        public async Task Create(Car car)
+        public async Task<bool> Add(Car car)
         {
-            throw new System.NotImplementedException();
+            var mappedCar = _mapper.Map<Entities.Car>(car);
+
+            return await _carRepository.Add(mappedCar);
         }
 
-        public async Task Update(Car car)
+        public async Task<bool> Update(Car car)
         {
-            throw new System.NotImplementedException();
+            var mappedCar = _mapper.Map<Entities.Car>(car);
+
+            return await _carRepository.Update(mappedCar);
         }
 
-        public async Task Delete(int id)
+        public async Task<bool> Remove(int carId)
         {
-            throw new System.NotImplementedException();
+            return await _carRepository.RemoveCar(carId);
         }
     }
 }

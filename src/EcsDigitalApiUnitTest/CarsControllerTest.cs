@@ -1,15 +1,15 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using EcsDigitalApi.Services;
-using EcsDigitalApi.Controllers;
 using EcsDigitalApi.ApiModels;
+using EcsDigitalApi.Controllers;
+using EcsDigitalApi.Services;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
 
-namespace EcsDigitalApiUnitTest
+namespace EcsDigitalApiTest
 {
     public class CarsControllerTest
     {
@@ -148,7 +148,7 @@ namespace EcsDigitalApiUnitTest
 
             var response = await carController.Put(0, new Car{Id = 0, Year = 2019 }).ConfigureAwait(false);
 
-            mockCarService.Verify(p=> p.Create(It.IsAny<Car>()));
+            mockCarService.Verify(p=> p.Add(It.IsAny<Car>()));
             response.Should().BeOfType<OkResult>();
         }
 
@@ -307,7 +307,7 @@ namespace EcsDigitalApiUnitTest
 
             var response = await carController.Delete(expectedCarId).ConfigureAwait(false);
 
-            mockCarService.Verify(x => x.Delete(It.IsAny<int>()));
+            mockCarService.Verify(x => x.Remove(It.IsAny<int>()));
             response.Should().BeOfType<OkResult>();
         }
         
