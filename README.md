@@ -1,6 +1,6 @@
 <h1>ECS Digital Test - Oshry Horn</h1>
 
-<h3>Thanks for giving me the chance to complete this exercise.<h3>
+<h3>Thanks for giving me the chance to complete this exercise.</h3>
 
 <p>
   This a single-page application written using Angular 8.2.12 and Bootstrap 4.3.1.
