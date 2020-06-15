@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using EcsDigitalApi.ApiModels;
+using EcsDigitalApi.Domain;
 using EcsDigitalApi.Services;
 using Microsoft.AspNetCore.Mvc;
 

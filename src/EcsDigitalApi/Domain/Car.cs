@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 
-namespace EcsDigitalApi.Entities
+namespace EcsDigitalApi.Domain
 {
     public class Car
     {
@@ -11,10 +11,17 @@ namespace EcsDigitalApi.Entities
         [Required]
         public int ModelId { get; set; }
 
+        public string Model { get; set; }
+
+        public string Maker { get; set; }
+
+        public string RelatedWords { get; set; }
+
         [Required]
+        [Range(1900, 2022)]
         public int Year { get; set; }
 
         [Required]
-        public Color Colour { get; set; }
+        public string Colour { get; set; }
     }
 }

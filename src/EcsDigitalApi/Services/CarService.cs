@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using EcsDigitalApi.ApiModels;
+using EcsDigitalApi.Domain;
 using EcsDigitalApi.Repositories;
 
 namespace EcsDigitalApi.Services
@@ -18,18 +18,18 @@ namespace EcsDigitalApi.Services
             _carRepository = carRepository;
         }
 
-        public async Task<IEnumerable<Car>> GetAll()
+        public async Task<List<Car>> GetAll()
         {
-            var cars = await _carRepository.GetAll();
+            var cars = await _carRepository.GetAllCars();
 
-            var mappedCars = cars.Select(car => _mapper.Map<ApiModels.Car>(car));
+            var mappedCars = cars.Select(car => _mapper.Map<Car>(car));
 
-            return mappedCars;
+            return mappedCars.ToList();
         }
 
         public async Task<Car> Get(int carId)
         {
-            var car = await _carRepository.GetBiId(carId);
+            var car = await _carRepository.GetCarById(carId);
 
             var mappedCars = _mapper.Map<Car>(car);
 
@@ -38,16 +38,16 @@ namespace EcsDigitalApi.Services
 
         public async Task<bool> Add(Car car)
         {
-            var mappedCar = _mapper.Map<Entities.Car>(car);
+            var mappedCar = _mapper.Map<DbModels.Car>(car);
 
-            return await _carRepository.Add(mappedCar);
+            return await _carRepository.AddCar(mappedCar);
         }
 
         public async Task<bool> Update(Car car)
         {
-            var mappedCar = _mapper.Map<Entities.Car>(car);
+            var mappedCar = _mapper.Map<DbModels.Car>(car);
 
-            return await _carRepository.Update(mappedCar);
+            return await _carRepository.UpdateCar(mappedCar);
         }
 
         public async Task<bool> Remove(int carId)

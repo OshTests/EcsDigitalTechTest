@@ -1,5 +1,5 @@
 using AutoMapper;
-using EcsDigitalApi.Entities;
+using EcsDigitalApi.Data;
 using EcsDigitalApi.Repositories;
 using EcsDigitalApi.Services;
 using Microsoft.AspNetCore.Builder;
@@ -24,18 +24,16 @@ namespace EcsDigitalApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<IMapper, Mapper>(serviceProvider => new Mapper(new MapperConfiguration(CreateMaps)));
+            services.AddScoped<IMapper, Mapper>(serviceProvider => new Mapper(new MapperConfiguration(Mappers.CreateMaps)));
             services.AddScoped<ICarService, CarService>();
             services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<IModelService, ModelService>();
+            services.AddScoped<IMakerService, MakerService>();
+            services.AddScoped<IRelatedWordsService, RelatedWordsService>();
+            services.AddScoped<IRelatedWordsService, RelatedWordsService>();
 
             //Using the MVC built in dependency injection (scoped by default).
             services.AddDbContext<CarsContext>(options => options.UseInMemoryDatabase("CarsContext"));
-        }
-
-        private void CreateMaps(IMapperConfigurationExpression config)
-        {
-            config.CreateMap<Car, ApiModels.Car>();
-            config.CreateMap<ApiModels.Car, Car>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

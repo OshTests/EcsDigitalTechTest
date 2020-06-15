@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EcsDigitalApi.ApiModels;
+using EcsDigitalApi.Domain;
 
 namespace EcsDigitalApi.Services
 {
     public interface ICarService
     {
-        Task<IEnumerable<Car>> GetAll();
+        Task<List<Car>> GetAll();
         Task<Car> Get(int carId);
         Task<bool> Add(Car car);
         Task<bool> Update(Car car);

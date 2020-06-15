@@ -1,8 +1,8 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using EcsDigitalApi.ApiModels;
 using EcsDigitalApi.Controllers;
+using EcsDigitalApi.Domain;
 using EcsDigitalApi.Services;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +16,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 1.
-        /// When: a "get" call to /api/cars,
+        /// When: a "get" call to /api/car,
         /// Then: return a response containing all cars from DB.
         /// </summary>
         [Fact]
@@ -33,7 +33,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 1.1
-        /// When: a "get" call to /api/cars,
+        /// When: a "get" call to /api/car,
         /// Given: the service throws an exception
         /// Then: return a response containing all cars from DB.
         /// </summary>
@@ -53,7 +53,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 2.
-        /// When: there's a "get" call to /api/cars/{id}
+        /// When: there's a "get" call to /api/car/{id}
         /// Given: the id argument is 0 (zero)
         /// Then: return an error response(BadRequest)
         /// </summary>
@@ -70,7 +70,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 3.
-        /// When: there's a "get" call to /api/cars/{id}
+        /// When: there's a "get" call to /api/car/{id}
         /// Given: a car with that id does not exist in the DB
         /// Then: return an error response(NotFound)
         /// </summary>
@@ -91,7 +91,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 4.
-        ///When: there's a "get" call to /api/cars/{id}
+        ///When: there's a "get" call to /api/car/{id}
         ///Given: a car with that id exists in the DB
         ///Then: return a response containing the car from DB with the matching id.
         /// </summary>
@@ -116,7 +116,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 5.
-        ///When: there's a "put" call to /api/cars
+        ///When: there's a "put" call to /api/car
         ///Given: the request is not valid(required fields and so on...)
         ///Then: return an error response(BadRequest)
         /// </summary>
@@ -135,7 +135,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 6.
-        ///When: there's a "put" call to /api/cars
+        ///When: there's a "put" call to /api/car
         ///Given: a.the request is valid(required fields and so on...)
         ///       b.the id field is 0 (zero) and the argument field is 0 (zero)
         ///Then: the post method is called(to add the new car to the DB)
@@ -154,7 +154,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 7.
-        ///When: there's a "put" call to /api/cars
+        ///When: there's a "put" call to /api/car
         ///Given: a. the request is valid(required fields and so on...)
         ///       b. the id field is not 0 (zero)
         ///       c. a car with that id does not exist in the DB
@@ -179,7 +179,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 8.
-        ///When: there's a "put" call to /api/cars
+        ///When: there's a "put" call to /api/car
         ///Given: a.the request is valid (required fields and so on...)
         ///       b.the id field is not 0 (zero)
         ///       c.a car with that id exists in the DB
@@ -204,7 +204,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 9.
-        ///When: there's a "post" call to /api/cars
+        ///When: there's a "post" call to /api/car
         ///Given: the request is not valid (required fields and so on...)
         ///Then: return an error response(BadRequest)
         /// </summary>
@@ -228,7 +228,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 10.
-        ///When: there's a "post" call to /api/cars
+        ///When: there's a "post" call to /api/car
         ///Given: a.the request is valid(required fields and so on...)
         ///       b.the id field is not 0 (zero)
         ///Then: call the "put" method to update the car in the DB.
@@ -252,7 +252,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 11.
-        ///When: there's a "delete" call to /api/cars
+        ///When: there's a "delete" call to /api/car
         ///Given: the id is 0 (zero)
         ///Then: return an error response(BadRequest)
         /// </summary>
@@ -269,7 +269,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 12.
-        /// When: there's a "delete" call to /api/cars
+        /// When: there's a "delete" call to /api/car
         /// Given: a. the id is not 0 (zero)
         ///        b. a car with that id does not exist in the DB
         /// Then: return an error response (NotFound)
@@ -290,7 +290,7 @@ namespace EcsDigitalApiTest
 
         /// <summary>
         /// 13.
-        /// When: there's a "delete" call to /api/cars
+        /// When: there's a "delete" call to /api/car
         /// Given: a. the id is not 0 (zero)
         ///        b. a car with that id exists in the DB
         /// Then: Delete the car from the DB
