@@ -19,7 +19,7 @@
 		Notes:
 		The controllers were written as implemented UnitTests.
 		The services (and the used repository) were written as implemented Integration Tests using the EF Core 3.1 In-Memory DB
-		I wanted to do the UI in TDD as well, but didn't. I'll explain why when we review this.
+		I wanted to do the UI in TDD as well but didn't. I'll explain why when we review this.
 	</li>
 	<li>
 		I have not used my own Testing framework here... Ask me why ^_^
@@ -31,7 +31,7 @@
 		<br />
 		There are various ways to organize the code called in a way that it is called DDD.
 		In fact, any way that allows the Domain to be independent from the model, and subsequently everything else, can be called DDD.
-		Each company/team/project have there own way of organizing their code (and call it DDD), just like different interpretations of agile and scrum are used. As long the structure serves it's purposes, I don't think it is not "incorrect".
+		Each company/team/project have their own way of organizing their code (and call it DDD), just like different interpretations of agile and scrum are used. As long the structure serves its purposes, I don't think it is not "incorrect".
 
 The reason I'm taking 5 sentences to elaborate on this, is because I know many times it seems like one way is right and another is wrong, and I don't want this structure to be "my" structure, it is what I found fitting for use here.
 	</li>
@@ -39,16 +39,16 @@ The reason I'm taking 5 sentences to elaborate on this, is because I know many t
 The domain models are not separate in this case. I know some like to take it to it's own "contracts" project, but I did not do that here.
 	</li>
 	<li>
-All of the DB definitions are in the DbContext and not in the objects, in order to not "contaminate" them.
+All the DB definitions are in the DbContext and not in the objects, in order to not "contaminate" them.
 	</li>
 	<li>
-I've used a set of separate DB model objects, even though I could have used the domain objects to show a clear cut separation.
+I've used a set of separate DB model objects, even though I could have used the domain objects to show a clear-cut separation.
 	</li>
 	<li>
 Though many may consider the "Repository" layer as no longer needed, I believe it does make it easier if/when other DB are used (Cache/Redit/Whatever), and could even make it easier to move to Event-Based architecture in the future.
 	</li>
 	<li>
-All tests were written asynchronously, and are designed to be independent and to run in parallel. 
+All tests were written asynchronously and are designed to be independent and to run in parallel. 
 	</li>
   <li>
 Angular - I did my best... Not really a front-end expert :)
