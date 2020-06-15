@@ -1,1 +1,66 @@
-# EcsDigitalTechTest
+<h1>ECS Digital Test - Oshry Horn</h1>
+
+<h3>Thanks for giving me the chance to complete this exercise.<h3>
+
+<p>
+  This a single-page application written using Angular 8.2.12 and Bootstrap 4.3.1.
+  <br/>
+  The used API is written in .NET Core 3.1 with EF Core 3.1.
+</p>
+
+<p>The code can be found <a href="https://github.com/OshTests/EcsDigitalTechTest">here</a></p>
+
+<p>
+	Though I'm fairly familiar with the tech stack I used here, I took it as a personal challenge to use the latest tech versions, utilize new features when possible, and get to the best possible result.
+	The test is written in .NET Core 3.1, ASP.NET Core 3.1 (MVC), Entity Framework Core 3.1, AutoMapper, Angular (latest), Bootsrap, Moq, FluentAssersions and more.
+</p>
+<p>
+	A few points about the test:
+</p>
+
+<ol>
+	<li>
+		<strong>The API was fully written in TDD</strong> (as you can see to some extent in the commits).
+		The guiding thought was not "how will I test this?", but "how do I write code which passes this test?".
+		Notes:
+		The controllers were written as implemented UnitTests.
+		The services (and the used repository) were written as implemented Integration Tests using the EF Core 3.1 In-Memory DB
+		I wanted to do the UI in TDD as well, but didn't. I'll explain why when we review this.
+	</li>
+	<li>
+		I have not used my own Testing framework here... Ask me why ^_^
+	</li>
+	<li>
+		The code was divided in one of the many interpretations of DDD
+		<br />
+		Side note:
+		<br />
+		There are various ways to organize the code called in a way that it is called DDD.
+		In fact, any way that allows the Domain to be independent from the model, and subsequently everything else, can be called DDD.
+		Each company/team/project have there own way of organizing their code (and call it DDD), just like different interpretations of agile and scrum are used. As long the structure serves it's purposes, I don't think it is not "incorrect".
+
+The reason I'm taking 5 sentences to elaborate on this, is because I know many times it seems like one way is right and another is wrong, and I don't want this structure to be "my" structure, it is what I found fitting for use here.
+	</li>
+	<li>
+The domain models are not separate in this case. I know some like to take it to it's own "contracts" project, but I did not do that here.
+	</li>
+	<li>
+All of the DB definitions are in the DbContext and not in the objects, in order to not "contaminate" them.
+	</li>
+	<li>
+I've used a set of separate DB model objects, even though I could have used the domain objects to show a clear cut separation.
+	</li>
+	<li>
+Though many may consider the "Repository" layer as no longer needed, I believe it does make it easier if/when other DB are used (Cache/Redit/Whatever), and could even make it easier to move to Event-Based architecture in the future.
+	</li>
+	<li>
+All tests were written asynchronously, and are designed to be independent and to run in parallel. 
+	</li>
+  <li>
+Angular - I did my best... Not really a front-end expert :)
+  </li>
+</ol>
+<p>
+Please ask me about these decisions... I will hopefully have good explanations for everything I did.
+</p>
+<p></p>
