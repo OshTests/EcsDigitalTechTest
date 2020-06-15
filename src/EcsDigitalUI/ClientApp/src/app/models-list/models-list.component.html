@@ -1,0 +1,36 @@
+<h1 id="tableLabel">Car Models</h1>
+
+<p>Add a new car model...</p>
+<p>
+  <label>Name:  </label>
+  <input type="text" [(ngModel)]="newModel.name" (ngModelChange)="validateModelExists()" placeholder="New Model Name" />
+</p>
+<p>
+  <label>Maker:  </label>
+  <select [(ngModel)]="newModel.makerId">
+    <option [ngValue]="maker.id" *ngFor="let maker of makers">{{maker.name}}</option>
+  </select>
+</p>
+<p *ngIf="!!newModelExists" style="color: red">A model with this name already exists</p>
+<button [disabled]="newModelExists || !newModel.name || !newModel.makerId" (click)="addNewModel()"> Add Model </button>
+
+
+<p *ngIf="!models"><em>Loading...</em></p>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="models">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Maker</th>
+      <th>Related Words</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let model of models">
+      <td>{{ model.id }}</td>
+      <td>{{ model.name }}</td>
+      <td>{{ model.makerName }}</td>
+      <td>{{ model.relatedWords }}</td>
+    </tr>
+  </tbody>
+</table>

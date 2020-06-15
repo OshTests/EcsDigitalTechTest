@@ -37,7 +37,7 @@ namespace EcsDigitalApi.Controllers
             }
         }
 
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Car>> Get(int id)
         {
             if (id == 0)
@@ -56,7 +56,6 @@ namespace EcsDigitalApi.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Post([FromBody] Car car)
         {
             if (!ModelState.IsValid)

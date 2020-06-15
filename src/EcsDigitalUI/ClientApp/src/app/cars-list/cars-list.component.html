@@ -1,0 +1,56 @@
+<h1 id="tableLabel">Cars</h1>
+
+<p>Add a new car...</p>
+<div class=" d-sm-inline-flex flex-sm-row">
+  <div class="flex-grow">
+    <label>Maker: </label>
+    <select [(ngModel)]="makerId" (ngModelChange)="updateModels()">
+      <option [ngValue]="maker.id" *ngFor="let maker of makers">{{maker.name}}</option>
+    </select>
+  </div>
+  <div class="flex-grow">
+    <label>Model: </label>
+    <select [(ngModel)]="newCar.modelId" (ngModelChange)="validateModelExists()">
+      <option [ngValue]="model.id" *ngFor="let model of makersModels">{{model.name}}</option>
+    </select>
+  </div>
+  <div class="flex-grow">
+    <label>Year: </label>
+    <input type="number" [(ngModel)]="newCar.year" (focusout)="validateYearInRangeExists()" placeholder="Year" />
+    <p *ngIf="!yearInRange && this.newCar.year > 0" style="color: red">Year must be between {{minYearRange}} and {{maxYearRange}}</p>
+  </div>
+  <div class="flex-grow">
+    <label>Colour: </label>
+    <select [(ngModel)]="newCar.colour" (ngModelChange)="validateModelExists()">
+      <option [ngValue]="colour" *ngFor="let colour of colours" [ngStyle]="{'background-color':colour}">{{colour}}</option>
+    </select>
+  </div>
+</div>
+
+<p *ngIf="!!newCarExists" style="color: red">A model with this name already exists</p>
+<button [disabled]="newCarExists || !newCar.modelId || !newCar.year || !newCar.colour" (click)="addNewCar()"> Add Model </button>
+
+<p><a class="nav-link text-dark" [routerLink]="['/makers-list']">Add a new car</a></p>
+<p *ngIf="!cars"><em>Loading...</em></p>
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="cars">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Model</th>
+      <th>Maker</th>
+      <th>Year</th>
+      <th>RelatedWords</th>
+      <th>Colour</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars">
+      <td>{{ car.id }}</td>
+      <td>{{ car.model }}</td>
+      <td>{{ car.maker }}</td>
+      <td>{{ car.year }}</td>
+      <td>{{ car.relatedWords }}</td>
+      <td [ngStyle]="{'background-color':car.colour}"><span [ngStyle]="{'background-color':'White'}">{{ car.colour }}</span></td>
+    </tr>
+  </tbody>
+</table>
